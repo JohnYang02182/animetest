@@ -1,0 +1,248 @@
+/*-------------------reset.css----------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ins, a {
+  text-decoration: none;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  outline: 0;
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+  outline: 0;
+}
+
+[contenteditable=true] {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  outline: none;
+}
+
+@-webkit-keyframes bounceInLeft {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(-600px, 0, 0);
+            transform: translate3d(-600px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(10px, 0, 0);
+            transform: translate3d(10px, 0, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounceInLeft {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(-600px, 0, 0);
+            transform: translate3d(-600px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(10px, 0, 0);
+            transform: translate3d(10px, 0, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+
+.bounceInLeft {
+  -webkit-animation-name: bounceInLeft;
+          animation-name: bounceInLeft;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+}
+
+.newanime-container {
+  position: relative;
+  width: 100%;
+}
+
+.newanime-container .newanime-wrap {
+  margin: auto;
+  padding: 64px 0px;
+  max-width: 1380px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.newanime-container .newanime-wrap .newanime-block {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 0 36px 0;
+  width: calc(100% / 6);
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area:last-child {
+  max-width: 194px;
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area:last-child .anime-block {
+  padding: 36px 0;
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area:last-child .anime-block > span {
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area:last-child .date-block > span {
+  right: 0;
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area .date-block {
+  position: relative;
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area .date-block > span {
+  position: absolute;
+  top: -14px;
+  right: 24px;
+  font-size: 13px;
+  color: #fff;
+  padding: 4px 16px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: #DF9F44;
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area .date-block .date-block-border {
+  border: none;
+  border-top: 2px solid #Df9F44;
+  border-bottom: 3px dotted #82B1CB;
+  height: 48px;
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area .anime-block {
+  position: relative;
+  padding: 36px 24px 36px 0px;
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area .anime-block > span {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  -webkit-transform: translateX(calc(-50% - 12px));
+          transform: translateX(calc(-50% - 12px));
+  padding: 4px 16px;
+  font-size: 13px;
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  background-color: #82B1CB;
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area .anime-block .anime-card-block {
+  width: 100%;
+  height: 136px;
+  background-color: #6f6f6f;
+  border-radius: 3px;
+}
+
+/*# sourceMappingURL=animatetest.css.map */

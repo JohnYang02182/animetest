@@ -1,0 +1,60 @@
+//Define the font of the landing page
+$web-title-font: "Helvetica Neue",Helvetica,Roboto,Arial,"Lucida Grande","PingFang TC","蘋果儷中黑","Apple LiGothic Medium","微軟正黑體","Microsoft JhengHei",sans-serif;
+$web-content-font: "Helvetica Neue",Helvetica,Roboto,Arial,"Lucida Grande","PingFang TC","蘋果儷中黑","Apple LiGothic Medium","微軟正黑體","Microsoft JhengHei",sans-serif;
+
+//Define the color of the anime
+$sub-color: #3eadb9;
+$main-color: #46C1CF;
+$title-color: #fdb2cc;
+$bg-color-dark: #ebebeb;
+$bg-black: #000000;
+$bg-post: #B6E1E8;
+$btn-color: #989898;
+$text-main-deep-dark: #323232;
+$text-deep-dark: #4A4A4A ;
+$text-dark: #6F6F6F;
+$text-color-dark: #626262;
+$text-color-white: #ffffff;
+$text-color-light: #f9f9f9;
+$text-title-light: #7DD3DD;
+$btn-scroll-color: #f6e0d5;
+$btn-shadow: #b7456d;
+$btn-logbefore-color: #ec90b0;
+$btn-pink: #E8759D;
+$border-input: #c1c1c1;
+
+//Define the color of the baha shopping page
+$shopping-main-color: #1197FF;
+$shopping-sub-color: #0088CC;
+$shopping-light-color: #04ADEF;
+$shopping-btn-color: #71B9E6;
+$shopping-btn-disable: #BEBEBE;
+$shopping-pink-color: #E8759D;
+$shopping-pink-deep: #E267A6;
+$shopping-index-gray: #EFEFF4;
+$ns-color: #F54742;
+$ps4-color: #2E52B2;
+$uplay-color: #5264E0;
+$steam-color: #070B25;
+$xboxone-color: #137D11;
+$pc-color: #3082bf;
+$etc-color: #2E4B55;
+
+//Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+
+// Extra small screen / phone
+$screen-xs-min: 480px !default;
+
+// Small screen / tablet
+$screen-sm-min: 780px !default;
+
+// Medium screen / desktop
+$screen-md-min: 995px !default;
+
+// Large screen / wide desktop
+$screen-lg-min: 1200px !default;
+
+// Large scree / wider desktop
+$screen-lg-med: 1600px !default;
+

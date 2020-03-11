@@ -1,0 +1,30 @@
+{
+  "name": "anime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run clean:dist && gulp watch",
+    "clean:dist": "rm -rf dist",
+    "build": "npm run clean:dist && gulp sass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@picsrc.baha:8415/home/git/sass"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-lint": "^1.2.0",
+    "gulp-sourcemaps": "^2.6.4"
+  },
+  "dependencies": {
+    "autosize": "^4.0.2"
+  }
+}
