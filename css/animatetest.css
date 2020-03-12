@@ -70,18 +70,19 @@ input:focus, select:focus, textarea:focus, button:focus {
 
 @-webkit-keyframes lightSpeedIn {
   from {
-    -webkit-transform: translate3d(-100%, 0, 0) skewX(20deg);
-            transform: translate3d(-100%, 0, 0) skewX(20deg);
+    -webkit-transform: translate3d(-100%, 0, 0) rotate(10deg);
+            transform: translate3d(-100%, 0, 0) rotate(10deg);
     opacity: 0;
   }
   60% {
-    -webkit-transform: skewX(5deg);
-            transform: skewX(5deg);
-    opacity: 1;
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+    opacity: 0.5;
   }
   80% {
-    -webkit-transform: skewX(0deg);
-            transform: skewX(0deg);
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+    opacity: 1;
   }
   to {
     -webkit-transform: translate3d(0, 0, 0);
@@ -91,18 +92,19 @@ input:focus, select:focus, textarea:focus, button:focus {
 
 @keyframes lightSpeedIn {
   from {
-    -webkit-transform: translate3d(-100%, 0, 0) skewX(20deg);
-            transform: translate3d(-100%, 0, 0) skewX(20deg);
+    -webkit-transform: translate3d(-100%, 0, 0) rotate(10deg);
+            transform: translate3d(-100%, 0, 0) rotate(10deg);
     opacity: 0;
   }
   60% {
-    -webkit-transform: skewX(5deg);
-            transform: skewX(5deg);
-    opacity: 1;
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+    opacity: 0.5;
   }
   80% {
-    -webkit-transform: skewX(0deg);
-            transform: skewX(0deg);
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+    opacity: 1;
   }
   to {
     -webkit-transform: translate3d(0, 0, 0);
