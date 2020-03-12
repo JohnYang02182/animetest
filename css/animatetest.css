@@ -68,32 +68,20 @@ input:focus, select:focus, textarea:focus, button:focus {
   outline: none;
 }
 
-@-webkit-keyframes bounceInLeft {
-  from,
-  60%,
-  75%,
-  90%,
-  to {
-    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  0% {
-    opacity: 1;
-    -webkit-transform: translate3d(-600px, 0, 0);
-            transform: translate3d(-600px, 0, 0);
+@-webkit-keyframes lightSpeedIn {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0) skewX(20deg);
+            transform: translate3d(-100%, 0, 0) skewX(20deg);
+    opacity: 0;
   }
   60% {
+    -webkit-transform: skewX(5deg);
+            transform: skewX(5deg);
     opacity: 1;
-    -webkit-transform: translate3d(10px, 0, 0);
-            transform: translate3d(10px, 0, 0);
   }
-  75% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-  }
-  90% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+  80% {
+    -webkit-transform: skewX(0deg);
+            transform: skewX(0deg);
   }
   to {
     -webkit-transform: translate3d(0, 0, 0);
@@ -101,32 +89,20 @@ input:focus, select:focus, textarea:focus, button:focus {
   }
 }
 
-@keyframes bounceInLeft {
-  from,
-  60%,
-  75%,
-  90%,
-  to {
-    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  0% {
-    opacity: 1;
-    -webkit-transform: translate3d(-600px, 0, 0);
-            transform: translate3d(-600px, 0, 0);
+@keyframes lightSpeedIn {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0) skewX(20deg);
+            transform: translate3d(-100%, 0, 0) skewX(20deg);
+    opacity: 0;
   }
   60% {
+    -webkit-transform: skewX(5deg);
+            transform: skewX(5deg);
     opacity: 1;
-    -webkit-transform: translate3d(10px, 0, 0);
-            transform: translate3d(10px, 0, 0);
   }
-  75% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-  }
-  90% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+  80% {
+    -webkit-transform: skewX(0deg);
+            transform: skewX(0deg);
   }
   to {
     -webkit-transform: translate3d(0, 0, 0);
@@ -134,11 +110,13 @@ input:focus, select:focus, textarea:focus, button:focus {
   }
 }
 
-.bounceInLeft {
-  -webkit-animation-name: bounceInLeft;
-          animation-name: bounceInLeft;
-  -webkit-animation-duration: 0.3s;
-          animation-duration: 0.3s;
+.lightSpeedIn {
+  -webkit-animation-name: lightSpeedIn;
+          animation-name: lightSpeedIn;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-duration: 1.0s;
+          animation-duration: 1.0s;
 }
 
 .newanime-container {
@@ -215,8 +193,14 @@ input:focus, select:focus, textarea:focus, button:focus {
 .newanime-container .newanime-wrap .newanime-block .newanime-date-area .date-block .date-block-border {
   border: none;
   border-top: 2px solid #Df9F44;
-  border-bottom: 3px dotted #82B1CB;
   height: 48px;
+}
+
+.newanime-container .newanime-wrap .newanime-block .newanime-date-area .date-block .dotted-line {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
 }
 
 .newanime-container .newanime-wrap .newanime-block .newanime-date-area .anime-block {

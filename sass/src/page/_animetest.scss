@@ -1,29 +1,16 @@
-@keyframes bounceInLeft {
-  from,
-  60%,
-  75%,
-  90%,
-  to {
-    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-
-  0% {
-    opacity: 1;
-    transform: translate3d(-600px, 0, 0);
+@keyframes lightSpeedIn {
+  from {
+    transform: translate3d(-100%, 0, 0) skewX(20deg);
+    opacity: 0;
   }
 
   60% {
+    transform: skewX(5deg);
     opacity: 1;
-    transform: translate3d(10px, 0, 0);
   }
 
-  75% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  90% {
-    transform: translate3d(0, 0, 0);
+  80% {
+    transform: skewX(0deg);
   }
 
   to {
@@ -31,10 +18,12 @@
   }
 }
 
-.bounceInLeft {
-  animation-name: bounceInLeft;
-  animation-duration: 0.3s;
+.lightSpeedIn {
+  animation-name: lightSpeedIn;
+  animation-timing-function: ease-out;
+  animation-duration: 1.0s;
 }
+
 
 .newanime-container {
   position: relative;
@@ -84,8 +73,13 @@
           .date-block-border {
             border: none;
             border-top: 2px solid #Df9F44;
-            border-bottom: 3px dotted #82B1CB;
             height: 48px;
+          }
+          .dotted-line {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
           }
         }
         .anime-block {
