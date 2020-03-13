@@ -12,7 +12,7 @@
     <script>
       $(document).ready(function() {
         var new_anime = 8;
-        var a = 1.3;
+        var a = 0.5 + (new_anime*0.1);
         for(var i=1;i<=new_anime;i++){
           $(".newanime-date-area:nth-of-type("+i+")").children('.anime-block').addClass('lightSpeedIn').css("animation-duration",a+"s");
           a = a - (0.08*i);
