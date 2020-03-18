@@ -7,25 +7,38 @@
     <link rel="stylesheet" href="css/animatetest.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://i2.bahamut.com.tw/js/plugins/lazysizes-3.0.0.min.js" async></script>
-    <script src="https://i2.bahamut.com.tw/js/plugins/dialogify.min.js"></script>
     <script src="https://i2.bahamut.com.tw/js/wall_common.js"></script>
     <script>
       $(document).ready(function() {
         var new_anime = 8;
-        var a = 0.5 + (new_anime*0.1);
+        var a = 0.1 + (new_anime*0.1);
         for(var i=1;i<=new_anime;i++){
           $(".newanime-date-area:nth-of-type("+i+")").children('.anime-block').addClass('lightSpeedIn').css("animation-duration",a+"s");
-          a = a - (0.08*i);
+          a = a - (0.02*i);
         }
+        $(".new-count-1").hover(function(event) {
+          var $this = $(this);
+          $(".new-count-1 .date-block").find('span').remove();
+          $(".new-count-1").children(".date-block").find(".date-block-border").addClass('border-changecolor');
+          $(".new-count-1").css("background-color","rgba(250,214,137,0.3)");
+          $this.children(".date-block").prepend("<span class='date-info'>3/22 (日)</span>");
+          $this.children(".date-block").children(".date-info").addClass("fadeIn");
+          /* Stuff to do when the mouse enters the element */
+        },function(){
+          $(".new-count-1").css("background-color","");
+          $(".new-count-1 .date-block").find('span').remove();
+          $(".new-count-1:nth-of-type(4)").children(".date-block").append("<span>3/22 (日)</span>");
+          $(".date-block-border").removeClass('border-changecolor');
+        });
       });
-    </script>
+  </script>
   </head>
   <body>
     <div class="newanime-container">
-      <div class="newanime-wrap">
-        <div class="newanime-block">
+      <div class="newanime-wrap"><!--置中-->
+        <div class="newanime-block"><!--display flex-->
           <!--單則動畫-->
-          <div class="newanime-date-area new-count">
+          <div class="newanime-date-area new-count-1">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -42,7 +55,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count">
+          <div class="newanime-date-area new-count-1">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -59,7 +72,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count">
+          <div class="newanime-date-area new-count-1">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -74,11 +87,11 @@
             </div>
           </div>
           <!--單則動畫結束-->
-
+        
           <!--單則動畫-->
-          <div class="newanime-date-area new-count">
+          <div class="newanime-date-area new-count-1">
             <div class="date-block">
-              <span>3/22</span>
+              <span>3/22 (日)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
@@ -92,9 +105,9 @@
             </div>
           </div>
           <!--單則動畫結束-->
-
+       
           <!--單則動畫-->
-          <div class="newanime-date-area">
+          <div class="newanime-date-area new-count-2">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -111,7 +124,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area">
+          <div class="newanime-date-area new-count-2">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -128,7 +141,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area">
+          <div class="newanime-date-area new-count-2">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -145,7 +158,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area">
+          <div class="newanime-date-area new-count-2">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -162,9 +175,9 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area">
+          <div class="newanime-date-area new-count-2">
             <div class="date-block">
-              <span>3/21</span>
+              <span>3/21 (六)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
@@ -179,10 +192,11 @@
           </div>
           <!--單則動畫結束-->
 
+        
           <!--單則動畫-->
-          <div class="newanime-date-area">
+          <div class="newanime-date-area new-count-3">
             <div class="date-block">
-              <span>3/20</span>
+              <span>3/20 (五)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
@@ -196,9 +210,9 @@
             </div>
           </div>
           <!--單則動畫結束-->
-
+       
           <!--單則動畫-->
-          <div class="newanime-date-area">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -215,7 +229,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -232,7 +246,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -249,9 +263,9 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
-              <span>3/19</span>
+              <span>3/19 (四)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
