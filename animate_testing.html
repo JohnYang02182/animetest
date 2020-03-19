@@ -12,24 +12,36 @@
       $(document).ready(function() {
         var new_anime = 8;
         var a = 0.1 + (new_anime*0.1);
+        var newdate;
         for(var i=1;i<=new_anime;i++){
           $(".newanime-date-area:nth-of-type("+i+")").children('.anime-block').addClass('lightSpeedIn').css("animation-duration",a+"s");
           a = a - (0.02*i);
         }
-        $(".new-count-1").hover(function(event) {
-          var $this = $(this);
-          $(".new-count-1 .date-block").find('span').remove();
-          $(".new-count-1").children(".date-block").find(".date-block-border").addClass('border-changecolor');
-          $(".new-count-1").css("background-color","rgba(250,214,137,0.3)");
-          $this.children(".date-block").prepend("<span class='date-info'>3/22 (日)</span>");
-          $this.children(".date-block").children(".date-info").addClass("fadeIn");
-          /* Stuff to do when the mouse enters the element */
-        },function(){
-          $(".new-count-1").css("background-color","");
-          $(".new-count-1 .date-block").find('span').remove();
-          $(".new-count-1:nth-of-type(4)").children(".date-block").append("<span>3/22 (日)</span>");
-          $(".date-block-border").removeClass('border-changecolor');
-        });
+
+        function hoverIn(day) {
+          $(".new-count-"+day).hover(function() {
+            var $this = $(this);
+            newdate = $(".new-count-"+day+" .date-block span").html();
+            // $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut');
+            $(".new-count-"+day).last().children(".date-block").find('span').addClass('fadeOut').remove();
+            $(".new-count-"+day).children(".date-block").find(".date-block-border").addClass('border-changecolor');
+            $(".new-count-"+day).css("background-color","rgba(250,214,137,0.3)");
+            $this.children(".date-block").prepend("<span class='date-info'>"+newdate+"</span>");
+            $this.children(".date-block").children(".date-info").addClass("fadeIn");
+            /* mouse in */
+          },function(){
+            newdate = $(".new-count-"+day+" .date-block span").html();
+            // console.log(newdate);
+            $(".new-count-"+day).css("background-color","");
+            $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut').delay(2000).remove();
+            $(".new-count-"+day).last().children(".date-block").append("<span class='fadeInDown'>"+newdate+"</span>");
+            $(".date-block-border").removeClass('border-changecolor');
+            /* mouse out */
+          }); 
+        }
+        for(var i=1;i<=4;i++){
+          hoverIn(i);
+        }   
       });
   </script>
   </head>
