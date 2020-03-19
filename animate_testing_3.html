@@ -32,20 +32,18 @@
             }
             $(".new-count-"+day).removeClass("changeColor");
             // $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut');
-            $(".new-count-"+day).last().children(".date-block").find('span').remove();
             $(".new-count-"+day).children(".date-block").find(".date-block-border").addClass('border-changecolor');
-            // $(".new-count-"+day).css("background-color","rgba(250,214,137,0.3)");
-            $this.children(".date-block").prepend("<span class='date-info'>"+newdate+"</span>");
-            $this.children(".date-block").children(".date-info").addClass("fadeIn");
+            $(".new-count-"+day).children(".date-block").find("span").css({"background-color":"#FB9C00","font-size":"15px"});
+            $(".new-count-"+day).css("background-color","rgba(250,214,137,0.3)");
+            // $this.children(".date-block").children(".date-info").addClass("fadeIn");
             /* mouse in */
           },function(){
             newdate = $(".new-count-"+day+" .date-block span").html();
             $(".new-count-1 .date-block .date-block-border").css("background-color","");
             $(".new-count-1 .date-block >span").css("background-color","");
             // console.log(newdate);
-            // $(".new-count-"+day).addClass("changeColor").css("background-color","");
-            $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut').delay(2000).remove();
-            $(".new-count-"+day).last().children(".date-block").append("<span class='fadeInDown'>"+newdate+"</span>");
+            $(".new-count-"+day).addClass("changeColor").css("background-color","");
+            $(".date-block").find("span").css({"background-color":"","font-size":""});
             $(".date-block-border").removeClass('border-changecolor');
             /* mouse out */
           }); 
