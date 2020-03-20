@@ -34,6 +34,7 @@
             // $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut');
             $(".new-count-"+day).last().children(".date-block").find('span').remove();
             $(".new-count-"+day).children(".date-block").find(".date-block-border").addClass('border-changecolor');
+            $(".new-count-"+day).children(".date-block").find("g").html('<path stroke-dasharray="0,0" d="M0 10 l230 0" />');
             // $(".new-count-"+day).css("background-color","rgba(250,214,137,0.3)");
             $this.children(".date-block").prepend("<span class='date-info'>"+newdate+"</span>");
             $this.children(".date-block").children(".date-info").addClass("fadeIn");
@@ -45,6 +46,7 @@
             // console.log(newdate);
             // $(".new-count-"+day).addClass("changeColor").css("background-color","");
             $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut').delay(2000).remove();
+            $(".new-count-"+day).children(".date-block").find("g").html('<path stroke-dasharray="4,3" d="M0 10 l230 0" />');
             $(".new-count-"+day).last().children(".date-block").append("<span class='fadeInDown'>"+newdate+"</span>");
             $(".date-block-border").removeClass('border-changecolor');
             /* mouse out */
