@@ -31,22 +31,26 @@
               $(".new-count-1 .date-block >span").css("background-color","");
             }
             $(".new-count-"+day).removeClass("changeColor");
+            $(".new-count-"+day).css("z-index","2");
             // $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut');
-            $(".new-count-"+day).last().children(".date-block").find('span').remove();
+            $this.children(".date-block").find('span').remove();
+            $(".new-count-"+day).children(".date-block").css("background-color","#f0f0f0");
             $(".new-count-"+day).children(".date-block").find(".date-block-border").addClass('border-changecolor');
-            $(".new-count-"+day).children(".date-block").find("g").html('<path stroke-dasharray="0,0" d="M0 10 l230 0" />');
+            $(".new-count-"+day).children(".date-block").find("g").html('<path stroke-dasharray="0,0" d="M0 10 l280 0" />');
             // $(".new-count-"+day).css("background-color","rgba(250,214,137,0.3)");
             $this.children(".date-block").prepend("<span class='date-info'>"+newdate+"</span>");
-            $this.children(".date-block").children(".date-info").addClass("fadeIn");
+            $this.children(".date-block").children(".date-info").one().addClass("fadeIn");
             /* mouse in */
           },function(){
             newdate = $(".new-count-"+day+" .date-block span").html();
+            $(".new-count-"+day).css("z-index","1");
             $(".new-count-1 .date-block .date-block-border").css("background-color","");
             $(".new-count-1 .date-block >span").css("background-color","");
             // console.log(newdate);
             // $(".new-count-"+day).addClass("changeColor").css("background-color","");
+            $(".new-count-"+day).children(".date-block").css("background-color","");
             $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut').delay(2000).remove();
-            $(".new-count-"+day).children(".date-block").find("g").html('<path stroke-dasharray="4,3" d="M0 10 l230 0" />');
+            $(".new-count-"+day).children(".date-block").find("g").html('<path stroke-dasharray="4,3" d="M0 10 l280 0" />');
             $(".new-count-"+day).last().children(".date-block").append("<span class='fadeInDown'>"+newdate+"</span>");
             $(".date-block-border").removeClass('border-changecolor');
             /* mouse out */
@@ -70,9 +74,13 @@
           <div class="newanime-date-area new-count-1">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle-active">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -124,7 +132,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -141,7 +149,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -158,7 +166,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -175,7 +183,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -192,7 +200,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -209,7 +217,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -226,7 +234,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -243,7 +251,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -260,7 +268,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -278,7 +286,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -297,7 +305,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -314,7 +322,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -331,7 +339,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -348,7 +356,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
@@ -366,7 +374,7 @@
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l230 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>

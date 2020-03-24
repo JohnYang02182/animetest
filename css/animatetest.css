@@ -283,6 +283,24 @@ input:focus, select:focus, textarea:focus, button:focus {
           animation-duration: 1.0s;
 }
 
+.newanime-date-area .date-block .date-block-border {
+  right: 0px;
+  width: calc(100%);
+}
+
+.newanime-date-area:nth-of-type(6n) .date-block {
+  width: calc(100% + 24px);
+}
+
+.newanime-date-area:nth-of-type(6n) .date-block .date-block-border {
+  right: 0;
+  width: calc(100% + 24px);
+}
+
+.newanime-date-area:nth-of-type(6n) .date-block .dotted-line {
+  width: calc( 100% + 24px);
+}
+
 .newanime-container {
   position: relative;
   width: 100%;
@@ -290,7 +308,7 @@ input:focus, select:focus, textarea:focus, button:focus {
 
 .newanime-container .newanime-wrap {
   margin: auto;
-  padding: 64px 0px;
+  padding: 64px 0;
   max-width: 1380px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -307,11 +325,11 @@ input:focus, select:focus, textarea:focus, button:focus {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 16px 0 0 0;
+  padding: 16px 24px 0 0;
   overflow: hidden;
 }
 
-.newanime-container .newanime-wrap .newanime-block .newanime-date-area {
+.newanime-date-area {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -323,64 +341,80 @@ input:focus, select:focus, textarea:focus, button:focus {
   width: calc(100% / 6);
 }
 
-.newanime-container .newanime-wrap .newanime-block .newanime-date-area .date-block {
+.newanime-date-area .date-block {
   position: relative;
   height: 60px;
 }
 
-.newanime-container .newanime-wrap .newanime-block .newanime-date-area .date-block > span {
+.newanime-date-area .date-block > span {
   position: absolute;
-  top: 0px;
-  right: 12px;
+  top: -12px;
+  right: 0px;
   font-size: 13px;
   color: #fff;
   padding: 4px 16px;
   text-align: center;
   border-radius: 5px;
   background-color: #969696;
-  z-index: 2;
+  z-index: 3;
 }
 
-.newanime-container .newanime-wrap .newanime-block .newanime-date-area .date-block .date-info {
-  top: -2px;
+.newanime-date-area .date-block .double-circle {
+  position: absolute;
+  top: -9px;
+  left: -3px;
+  z-index: 3;
+}
+
+.newanime-date-area .date-block .double-circle > .circle {
+  fill: white;
+  stroke: #c4c4c4;
+}
+
+.newanime-date-area .date-block .circle-active > .circle {
+  stroke: #FB9C00;
+}
+
+.newanime-date-area .date-block .date-info {
+  top: -12px;
   right: unset;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  font-size: 15px;
+  font-size: 13px;
   pointer-events: none;
   background-color: #FB9C00;
 }
 
-.newanime-container .newanime-wrap .newanime-block .newanime-date-area .date-block .date-block-border {
+.newanime-date-area .date-block .date-block-border {
   position: absolute;
-  right: 12px;
-  top: 12px;
-  width: calc(100%);
+  top: 0px;
   height: 3px;
   background-color: #c4c4c4;
-}
-
-.newanime-container .newanime-wrap .newanime-block .newanime-date-area .date-block .border-changecolor {
-  top: 11px;
-  background-color: #FB9C00;
-  height: 5px;
   z-index: 1;
 }
 
-.newanime-container .newanime-wrap .newanime-block .newanime-date-area .date-block .dotted-line {
+.newanime-date-area .date-block .border-changecolor {
+  top: -1px;
+  background-color: #FB9C00;
+  height: 5px;
+  width: calc(100%);
+  z-index: 2;
+}
+
+.newanime-date-area .date-block .dotted-line {
   position: absolute;
   top: 49px;
   left: 0;
   width: 100%;
 }
 
-.newanime-container .newanime-wrap .newanime-block .newanime-date-area .anime-block {
+.newanime-date-area .anime-block {
   position: relative;
-  padding: 36px 12px;
+  padding: 36px 0 36px 24px;
 }
 
-.newanime-container .newanime-wrap .newanime-block .newanime-date-area .anime-block > span {
+.newanime-date-area .anime-block > span {
   position: absolute;
   top: -14px;
   left: 50%;
@@ -391,21 +425,21 @@ input:focus, select:focus, textarea:focus, button:focus {
   color: #fff;
   text-align: center;
   border-radius: 3px;
-  background-color: #82B1CB;
+  background-color: #56b4d1;
 }
 
-.newanime-container .newanime-wrap .newanime-block .newanime-date-area .anime-block .anime-card-block {
+.newanime-date-area .anime-block .anime-card-block {
   width: 100%;
   height: 136px;
   background-color: #969696;
   border-radius: 3px;
 }
 
-.newanime-container .newanime-wrap .newanime-block .new-count-1 .date-block .date-block-border {
+.new-count-1 .date-block .date-block-border {
   background-color: #FB9C00;
 }
 
-.newanime-container .newanime-wrap .newanime-block .new-count-1 .date-block > span {
+.new-count-1 .date-block > span {
   background-color: #FB9C00;
 }
 
