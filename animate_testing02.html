@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>動畫特效測試</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
-    <link rel="stylesheet" href="css/animatetest.css">
+    <link rel="stylesheet" href="css/animatetest02.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://i2.bahamut.com.tw/js/plugins/lazysizes-3.0.0.min.js" async></script>
     <script src="https://i2.bahamut.com.tw/js/wall_common.js"></script>
@@ -20,7 +20,8 @@
 
         function hoverIn(day) {
           $(".new-count-"+day).hover(function() {
-            var $this = $(this);
+            var $this = $(this),
+                c_count = day -1;
             newdate = $(".new-count-"+day+" .date-block span").html();
             if(day != 1){
               $(".new-count-1 .date-block .date-block-border").css("background-color","#c4c4c4");
@@ -31,7 +32,6 @@
               $(".new-count-1 .date-block >span").css("background-color","");
             }
             $(".new-count-"+day).removeClass("changeColor");
-            $(".new-count-"+day).css("z-index","2");
             // $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut');
             $this.children(".date-block").find('span').remove();
             // $(".new-count-"+day).children(".date-block").css("background-color","#f0f0f0");
@@ -39,17 +39,21 @@
             $(".new-count-"+day).children(".date-block").find(".date-block-border").addClass('border-changecolor');
             // $(".new-count-"+day).children(".date-block").find("g").css("stroke","#267284").html('<path stroke-dasharray="0,0" d="M0 10 l280 0" />');
             $(".new-count-"+day).children(".date-block").find("g").css("stroke","#267284");
-            // 時間變顏色 start
+            // 圓圈變顏色 start
 
             $(".new-count-"+day).children(".anime-block").find("span").css("background-color","#267284");
+            $(".new-count-1").children(".date-block").find("circle").css("stroke","#c4c4c4");
+            $(".new-count-"+day).prev().children(".date-block").find("circle").css("stroke","#FB9C00");
+            $(".new-count-"+day).children(".date-block").find("circle").css("stroke","#FB9C00");
 
-            //時間變顏色 end
+            //圓圈變顏色 end
+            $(".new-count-"+c_count).children(".date-block").removeClass('circle-active').addClass('circle');
+            $(".new-count-"+day).children(".date-block").removeClass('circle').addClass('circle-active');
             $this.children(".date-block").prepend("<span class='date-info'>"+newdate+"</span>");
             $this.children(".date-block").children(".date-info").addClass("fadeIn");
             /* mouse in */
           },function(){
             newdate = $(".new-count-"+day+" .date-block span").html();
-            $(".new-count-"+day).css("z-index","1");
             $(".new-count-1 .date-block .date-block-border").css("background-color","");
             $(".new-count-1 .date-block >span").css("background-color","");
             // console.log(newdate);
@@ -60,6 +64,11 @@
             $(".new-count-"+day).children(".date-block").find("g").css("stroke","");
             $(".new-count-"+day).children(".anime-block").find("span").css("background-color","");
             $(".new-count-"+day).children(".date-block").find("span").css("background-color","");
+
+            $(".new-count-1").children(".date-block").find("circle").css("stroke","");
+            $(".new-count-"+day).prev().children(".date-block").find("circle").css("stroke","");
+            $(".new-count-"+day).children(".date-block").find("circle").css("stroke","");
+
             $(".new-count-"+day).last().children(".date-block").append("<span class=''>"+newdate+"</span>");
             $(".date-block-border").removeClass('border-changecolor');
             /* mouse out */
@@ -83,10 +92,6 @@
           <div class="newanime-date-area new-count-1">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
-              <!-- <svg height="19" width="19" class="double-circle circle-active">
-                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
-                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
-              </svg> -->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -139,6 +144,10 @@
             <div class="date-block">
               <span>3/22 (日)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle-active">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -293,6 +302,10 @@
             <div class="date-block">
               <span>3/21 (六)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -312,6 +325,10 @@
             <div class="date-block">
               <span>3/20 (五)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -381,6 +398,10 @@
             <div class="date-block">
               <span>3/19 (四)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
