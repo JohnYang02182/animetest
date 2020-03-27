@@ -10,6 +10,7 @@
     <script src="https://i2.bahamut.com.tw/js/wall_common.js"></script>
     <script>
       $(document).ready(function() {
+
         var new_anime = 8;
         var a = 0.1 + (new_anime*0.1);
         var newdate;
@@ -18,45 +19,58 @@
           a = a - (0.02*i);
         }
 
+
+        // 判斷是否是最新的一天 開始
+        function judgeday(a){
+          if(a != 1){
+            $(".new-count-1 .date-block .date-block-border").css("background-color","#c4c4c4");
+            $(".new-count-1 .date-block >span").css("background-color","#969696");
+          }
+          else {
+            $(".new-count-1 .date-block .date-block-border").css("background-color","");
+            $(".new-count-1 .date-block >span").css("background-color","");
+          }
+        }
+        // 結束
+
+
         function hoverIn(day) {
           $(".new-count-"+day).hover(function() {
+            /* mouse in start*/
             var $this = $(this),
                 c_count = day -1;
             newdate = $(".new-count-"+day+" .date-block span").html();
-            if(day != 1){
-              $(".new-count-1 .date-block .date-block-border").css("background-color","#c4c4c4");
-              $(".new-count-1 .date-block >span").css("background-color","#969696");
-            }
-            else {
-              $(".new-count-1 .date-block .date-block-border").css("background-color","");
-              $(".new-count-1 .date-block >span").css("background-color","");
-            }
-            $(".new-count-"+day).removeClass("changeColor");
-            // $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut');
+            judgeday(day);
+            
+
             $this.children(".date-block").find('span').remove();
-            // $(".new-count-"+day).children(".date-block").css("background-color","#f0f0f0");
+            $(".new-count-"+day).children(".date-block").css("background-color","#f0f0f0");
             $(".new-count-"+day).children(".date-block").find("span").css("background-color","#FB9C00");
             $(".new-count-"+day).children(".date-block").find(".date-block-border").addClass('border-changecolor');
+            
             // $(".new-count-"+day).children(".date-block").find("g").css("stroke","#267284").html('<path stroke-dasharray="0,0" d="M0 10 l280 0" />');
             $(".new-count-"+day).children(".date-block").find("g").css("stroke","#267284");
+            $(".new-count-"+day).children(".anime-block").find("span").css("background-color","#267284");
+            
+
             // 圓圈變顏色 start
 
-            $(".new-count-"+day).children(".anime-block").find("span").css("background-color","#267284");
             $(".new-count-1").children(".date-block").find("circle").css("stroke","#c4c4c4");
             $(".new-count-"+day).prev().children(".date-block").find("circle").css("stroke","#FB9C00");
             $(".new-count-"+day).children(".date-block").find("circle").css("stroke","#FB9C00");
 
             //圓圈變顏色 end
             $(".new-count-"+c_count).children(".date-block").removeClass('circle-active').addClass('circle');
-            $(".new-count-"+day).children(".date-block").removeClass('circle').addClass('circle-active');
+            // $(".new-count-"+day).children(".date-block").removeClass('circle').addClass('circle-active');
             $this.children(".date-block").prepend("<span class='date-info'>"+newdate+"</span>");
             $this.children(".date-block").children(".date-info").addClass("fadeIn");
-            /* mouse in */
+            /* mouse in end*/
           },function(){
+            /* mouse out start */
             newdate = $(".new-count-"+day+" .date-block span").html();
             $(".new-count-1 .date-block .date-block-border").css("background-color","");
             $(".new-count-1 .date-block >span").css("background-color","");
-            // console.log(newdate);
+            
             // $(".new-count-"+day).addClass("changeColor").css("background-color","");
             $(".new-count-"+day).children(".date-block").css("background-color","");
             $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut').delay(2000).remove();
@@ -71,7 +85,7 @@
 
             $(".new-count-"+day).last().children(".date-block").append("<span class=''>"+newdate+"</span>");
             $(".date-block-border").removeClass('border-changecolor');
-            /* mouse out */
+            /* mouse out end */
           }); 
         }
         $('.new-count-*').mousemove(function(event) {
@@ -80,7 +94,11 @@
 
         for(var i=1;i<=4;i++){
           hoverIn(i);
-        }   
+        }
+
+        // function colorChangeLine(day, iAmIn){
+        //   if(i)
+        // }   
       });
   </script>
   </head>

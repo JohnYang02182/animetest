@@ -297,10 +297,6 @@ input:focus, select:focus, textarea:focus, button:focus {
   width: calc( 100%);
 }
 
-.newanime-date-area:nth-of-type(6n) .date-block > span {
-  right: 12px;
-}
-
 .newanime-container {
   position: relative;
   width: 100%;
