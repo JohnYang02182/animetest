@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-576.000000, -420.000000)">
+            <g id="Group-46" transform="translate(576.000000, 420.000000)">
+                <g id="Group-45">
+                    <g id="Group">
+                        <g id="Group-42" fill="#FFFFFF">
+                            <path d="M0.5336,13.6283 C0.5336,6.1873 6.5656,0.1563 14.0056,0.1563 C21.4456,0.1563 27.4776,6.1873 27.4776,13.6283 C27.4776,21.0693 21.4456,27.1003 14.0056,27.1003 C6.5656,27.1003 0.5336,21.0693 0.5336,13.6283 Z" id="Fill-40"></path>
+                        </g>
+                        <path d="M21.0178,8.716 L21.0178,8.716 C19.3368,7.035 16.5858,7.035 14.9048,8.716 C14.5118,9.109 14.2148,9.561 14.0058,10.043 C13.7968,9.561 13.4988,9.109 13.1068,8.716 C11.4258,7.035 8.6748,7.035 6.9938,8.716 C5.3128,10.397 5.3128,13.148 6.9938,14.829 L10.5008,18.337 L13.2968,21.132 C13.6868,21.522 14.3248,21.522 14.7148,21.132 L17.5098,18.337 L21.0178,14.829 C22.6988,13.148 22.6988,10.397 21.0178,8.716" id="Fill-43" fill="#EA81AA"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
