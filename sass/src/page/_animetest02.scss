@@ -289,7 +289,11 @@
         position: relative;
         width: 100%;
         .line-gradient {
-
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-image: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 23%, rgba(0,0,0,.3) 64%, rgba(0,0,0,0.60) 100%);
         }
         .anime-blocker {
           position: relative;
@@ -309,6 +313,54 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+          }
+        }
+        .anime-detail-info-block {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          display: flex;
+          align-items: center;
+          flex-wrap: nowrap;
+          width: 100%;
+          padding: 4px;
+          box-sizing: border-box;
+          .anime-episode {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            flex: 1;
+            padding: 4px;
+            >img {
+              margin: 0 4px 0 0;
+              width: 12px;
+              height: 12px;
+              fill: #fff;
+            }
+            >p {
+              font-size: 12px;
+              color: #fff;
+            }
+          }
+          .new-anime {
+            padding: 0px 8px;
+            height: 20px;
+            font-size: 13px;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: 500;
+            background-color: #DB5539;
+          }
+        }
+        .btn-favorite {
+          position: absolute;
+          top: 4px;
+          right: 4px;
+          width: 30px;
+          height: 30px;
+          >img {
+            width: 100%;
+            height: 100%;
           }
         }
       }
