@@ -172,7 +172,7 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      padding: 48px 12px 0 12px;
+      padding: 48px 24px 0 24px;
       overflow: hidden;
     }
   }
@@ -206,11 +206,11 @@
       position: absolute;
       top: -22px;
       right: -24px;
-      padding: 6px 0 0 0;
+      padding: 4px 0 0 0;
       font-size: 13px;
       color: #fff;
-      width: 50px;
-      height: 50px;
+      width: 45px;
+      height: 45px;
       text-align: center;
       border-radius: 100px;
       background-color: #969696;
@@ -284,7 +284,7 @@
     padding: 24px 12px 0px 12px;
     >span {
       position: absolute;
-      top: -14px;
+      top: -32px;
       left: 50%;
       transform: translateX(-50%);
       padding: 4px 16px;
@@ -441,6 +441,7 @@
       background-color: #D95639;
     }
     >span {
+      padding: 12px 0 0 0;
       background-color: #D95639;
     }
     .border-changecolor {
