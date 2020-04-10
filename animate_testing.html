@@ -10,68 +10,123 @@
     <script src="https://i2.bahamut.com.tw/js/wall_common.js"></script>
     <script>
       $(document).ready(function() {
-        var new_anime = 8;
-        var a = 0.1 + (new_anime*0.1);
-        var newdate;
-        for(var i=1;i<=new_anime;i++){
-          $(".newanime-date-area:nth-of-type("+i+")").children('.anime-block').addClass('lightSpeedIn').css("animation-duration",a+"s");
-          a = a - (0.02*i);
-        }
 
+        //最開始載入頁面時出現的動態 開始
+        function firstCardIn() {
+          let new_anime = 8;
+          let a = 0.1 + (new_anime*0.1);
+          let newdate;
+          for(let i=1;i<=new_anime;i++){
+            $(".newanime-date-area:nth-of-type("+i+")").children('.anime-block').addClass('lightSpeedIn').css("animation-duration",a+"s");
+            a = a - (0.02*i);
+          }
+        }
+        //最開始載入頁面時出現的動態 結束
+
+        firstCardIn();
+        
+        //hover天的區塊時會有動態效果 開始
         function hoverIn(day) {
           $(".new-count-"+day).hover(function() {
-            var $this = $(this);
+            /* mouse in start*/
+            let $this = $(this),
+                c_count = day -1;
             newdate = $(".new-count-"+day+" .date-block span").html();
-            if(day != 1){
-              $(".new-count-1 .date-block .date-block-border").css("background-color","#c4c4c4");
-              $(".new-count-1 .date-block >span").css("background-color","#969696");
-            }
-            else {
-              $(".new-count-1 .date-block .date-block-border").css("background-color","");
-              $(".new-count-1 .date-block >span").css("background-color","");
-            }
-            $(".new-count-"+day).removeClass("changeColor");
-            $(".new-count-"+day).css("z-index","2");
-            // $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut');
-            $this.children(".date-block").find('span').remove();
-            // $(".new-count-"+day).children(".date-block").css("background-color","#f0f0f0");
-            $(".new-count-"+day).children(".date-block").find("span").css("background-color","#FB9C00");
-            $(".new-count-"+day).children(".date-block").find(".date-block-border").addClass('border-changecolor');
-            // $(".new-count-"+day).children(".date-block").find("g").css("stroke","#267284").html('<path stroke-dasharray="0,0" d="M0 10 l280 0" />');
-            $(".new-count-"+day).children(".date-block").find("g").css("stroke","#267284");
-            // 時間變顏色 start
-
-            $(".new-count-"+day).children(".anime-block").find("span").css("background-color","#267284");
-
-            //時間變顏色 end
-            $this.children(".date-block").prepend("<span class='date-info'>"+newdate+"</span>");
-            $this.children(".date-block").children(".date-info").addClass("fadeIn");
-            /* mouse in */
+            judgeday(day);
+            colorChangeLine(day,true,$this);
+            // colorChangeDotted(day, true);
+            colorChangeCircle(day, true, c_count);
+            /* mouse in end*/
           },function(){
+            /* mouse out start */
+            let $this = $(this);
             newdate = $(".new-count-"+day+" .date-block span").html();
-            $(".new-count-"+day).css("z-index","1");
+            colorChangeLine(day,false,$this);
+            // colorChangeDotted(day, false);
+            colorChangeCircle(day, false);
+            
+            /* mouse out end */
+          }); 
+        }
+
+        for(var i=1;i<=13;i++){
+          hoverIn(i);
+        }
+
+        //hover天的區塊時會有動態效果 結束
+
+        // 判斷是否是最新的一天 開始
+        function judgeday(a){
+          if(a != 1){
+            $(".new-count-1 .date-block .date-block-border").css("background-color","#c4c4c4");
+            $(".new-count-1 .date-block >span").css("background-color","#969696");
+          }
+          else {
             $(".new-count-1 .date-block .date-block-border").css("background-color","");
             $(".new-count-1 .date-block >span").css("background-color","");
-            // console.log(newdate);
-            // $(".new-count-"+day).addClass("changeColor").css("background-color","");
+          }
+        }
+        // 結束
+
+        //控制線條變顏色 開始
+
+        function colorChangeLine(day, lineColor, thisElements){
+          let newdate = $(".new-count-"+day+" .date-block span").html();
+          if(lineColor === true) {
+
+            // thisElements.children(".date-block").find('span').remove();
+            $(".new-count-"+day).children(".date-block").find("span").remove();
+            $(".new-count-"+day).children(".date-block").css("background-color","#f0f0f0");
+            $(".new-count-"+day).children(".date-block").find("span").css("background-color","#FB9C00");
+            $(".new-count-"+day).children(".date-block").find(".date-block-border").addClass('border-changecolor');
+            thisElements.children(".date-block").prepend("<span class='date-info'>"+newdate+"</span>");
+            thisElements.children(".date-block").children(".date-info").addClass("fadeIn");
+            
+          }
+          else if(lineColor === false) {
+            // thisElements.children(".date-block").find('span').remove();
+            $(".new-count-"+day).children(".date-block").find("span").remove();
+            $(".new-count-1 .date-block .date-block-border").css("background-color","");
+            $(".new-count-1 .date-block >span").css("background-color","");
             $(".new-count-"+day).children(".date-block").css("background-color","");
-            $(".new-count-"+day+" .date-block").find('span').addClass('fadeOut').delay(2000).remove();
-            // $(".new-count-"+day).children(".date-block").find("g").css("stroke","").html('<path stroke-dasharray="4,3" d="M0 10 l280 0" />');
-            $(".new-count-"+day).children(".date-block").find("g").css("stroke","");
-            $(".new-count-"+day).children(".anime-block").find("span").css("background-color","");
             $(".new-count-"+day).children(".date-block").find("span").css("background-color","");
             $(".new-count-"+day).last().children(".date-block").append("<span class=''>"+newdate+"</span>");
             $(".date-block-border").removeClass('border-changecolor');
-            /* mouse out */
-          }); 
-        }
-        $('.new-count-*').mousemove(function(event) {
-          console.log('AA');
-        });
-
-        for(var i=1;i<=4;i++){
-          hoverIn(i);
+          }
         }   
+
+        //控制線條變顏色 結束
+
+        //控制虛線變色 開始
+        function colorChangeDotted(day, dottedColor) {
+          if(dottedColor === true) {
+            $(".new-count-"+day).children(".date-block").find("g").css("stroke","#267284").html('<path stroke-dasharray="0,0" d="M0 10 l280 0" />');
+            $(".new-count-"+day).children(".anime-block").find("span").css("background-color","#267284");
+          }
+          else if(dottedColor === false) {
+            $(".new-count-"+day).addClass("changeColor").css("background-color","");
+            $(".new-count-"+day).children(".date-block").find("g").css("stroke","").html('<path stroke-dasharray="4,3" d="M0 10 l280 0" />');
+            $(".new-count-"+day).children(".anime-block").find("span").css("background-color","");
+          }
+        }
+        //控制虛線變色 結束
+
+        //控制圓圈(起點＆終點)變色 開始
+        function colorChangeCircle(day, circleColor, c_count) {
+          if(circleColor === true) {
+            $(".new-count-1").children(".date-block").find("circle").css("stroke","#c4c4c4");
+            $(".new-count-"+day).prev().children(".date-block").find("circle").css("stroke","#FB9C00");
+            $(".new-count-"+day).children(".date-block").find("circle").css("stroke","#FB9C00");
+            $(".new-count-"+c_count).children(".date-block").removeClass('circle-active').addClass('circle');
+          }
+          else if(circleColor === false) {
+            $(".new-count-1").children(".date-block").find("circle").css("stroke","");
+            $(".new-count-"+day).prev().children(".date-block").find("circle").css("stroke","");
+            $(".new-count-"+day).children(".date-block").find("circle").css("stroke","");
+          }
+        }
+        //控制圓圈(起點＆終點)變色 結束
+
       });
   </script>
   </head>
@@ -83,10 +138,6 @@
           <div class="newanime-date-area new-count-1">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
-              <!-- <svg height="19" width="19" class="double-circle circle-active">
-                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
-                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
-              </svg> -->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -95,7 +146,33 @@
             </div>
             <div class="anime-block">
               <span>23:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/42/69cadeb3229448a08ec5efdfac1868e5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第13集</p>
+                    </div>
+                    <span class="new-anime">new</span>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>魔術士歐菲 流浪之旅</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>29.6萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
@@ -103,42 +180,107 @@
           <!--單則動畫-->
           <div class="newanime-date-area new-count-1">
             <div class="date-block">
+              <span>4/1<p>(三)</p></span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle-active">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l235 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
             <div class="anime-block">
               <span>22:30</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/41/663d424ada0342f4f140ed2c361868d5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第11集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>異世界四重奏 第二季</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>83.1萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-1">
+          <div class="newanime-date-area new-count-2">
             <div class="date-block">
+              <span>3/31<p>(二)</p></span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l235 0" />
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
                 </g>
               </svg>
             </div>
             <div class="anime-block">
               <span>22:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/39/5bbcf34b38abbeef14434b6ec41868b5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第52集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>鑽石王牌 act2</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>335萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
         
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-1">
+          <div class="newanime-date-area new-count-3">
             <div class="date-block">
-              <span>3/22 (日)</span>
+              <span>3/29<p>(日)</p></span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -147,13 +289,39 @@
             </div>
             <div class="anime-block">
               <span>19:30</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/77/2205f259e50f19d605bd779cca185n55.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第13集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>魔法紀錄 魔法少女小圓外傳</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>50.1萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
        
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-2">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -164,13 +332,39 @@
             </div>
             <div class="anime-block">
               <span>23:50</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/76/0c691219237d865bd7dd0e1c17185n45.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                    <span class="new-anime">R18</span>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>[R18+] 異種族風俗娘評鑑指南 [R18+]</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>101萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-2">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -181,13 +375,38 @@
             </div>
             <div class="anime-block">
               <span>23:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/76/0c691219237d865bd7dd0e1c17185n45.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>異種族風俗娘評鑑指南</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>91.8萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-2">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -198,13 +417,39 @@
             </div>
             <div class="anime-block">
               <span>22:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/59/ee5d97d4b02e8a7dc6d94f70fe185mn5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>22/7</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>28.7萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-2">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -215,13 +460,38 @@
             </div>
             <div class="anime-block">
               <span>21:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/74/a1a340ec39e6b9183b39f101b7185n25.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第9集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>言靈少女</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>5.6萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-2">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -232,13 +502,38 @@
             </div>
             <div class="anime-block">
               <span>21:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/96/3e2bb0c72e3a954cafd0197668185fc5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第87集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>我的英雄學院 第四季</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>417萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-2">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -249,13 +544,39 @@
             </div>
             <div class="anime-block">
               <span>21:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/55/594958f5f29ed55045659dda2a185mj5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第13集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>碧藍幻想 第二季</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>41.5萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-2">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -266,13 +587,38 @@
             </div>
             <div class="anime-block">
               <span>21:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/60/c5007178449880e67d00516924185h45.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>排球少年！！第四季</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>100萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-2">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -283,16 +629,45 @@
             </div>
             <div class="anime-block">
               <span>21:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/78/adcf2aa41a4928e06ed316bfdf185ke5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>請在伸展台上微笑</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>45.4萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-2">
+          <div class="newanime-date-area new-count-4">
             <div class="date-block">
-              <span>3/21 (六)</span>
+              <span>3/28<p>(六)</p></span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -301,16 +676,40 @@
             </div>
             <div class="anime-block">
               <span>20:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/79/cff3e586861dd3f53aad05304f184vf5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>織田肉桂信長</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>40.5萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
         
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-3">
+          <div class="newanime-date-area new-count-5">
             <div class="date-block">
-              <span>3/20 (五)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
@@ -320,13 +719,38 @@
             </div>
             <div class="anime-block">
               <span>16:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/18/e3780be8ae32b6764a09fe265f185iq5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>戀愛中的小行星</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>36萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
        
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-4">
+          <div class="newanime-date-area new-count-5">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -337,13 +761,38 @@
             </div>
             <div class="anime-block">
               <span>22:30</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/47/1a2417f259c694db10ad246ea3184jf5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>神推偶像登上武道館我就死而無憾</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>38.3萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-4">
+          <div class="newanime-date-area new-count-5">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -354,13 +803,792 @@
             </div>
             <div class="anime-block">
               <span>22:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/05/6d38db72a6f01bf0d8a3be6dbf184nt5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>索瑪麗與森林之神</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>67.3萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-4">
+          <div class="newanime-date-area new-count-5">
+            <div class="date-block">
+              <span>3/27<p>(五)</p></span>
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:30</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/07/7071ba6c54ed051c60489d026d184nv5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>寶石商人理察的謎鑑定</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>25萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+          
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-7">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>23:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/04/db059b1013037c5619fae06356184ns5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第11集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>〈Infinite Dendrogram〉-無盡連鎖-</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>72.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-7">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l235 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>22:30</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/03/9b95dbb846bcc9c006e7a61fc1184nr5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>貓娘樂園</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>60.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-7">
+            <div class="date-block">
+              <span>3/26<p>(四)</p></span>
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l235 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>22:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/02/95e25d439b34509a19aeeef2e7184nq5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>搖滾少女!! 活力棉花糖!!</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>7萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+        
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-8">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>19:30</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/25/5816ea64be5d630db12cb764991847p5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12B集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>Re：從零開始的異世界生活 新編集版</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>139萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+       
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-8">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>23:50</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/24/3671c043bc717ca3013c0b464a1847o5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12A集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>Re：從零開始的異世界生活 新編集版</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>139萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-8">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>23:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/03/5533228a9ae1bc104ec88b9a5b1849v5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>怕痛的我，把防禦力點滿就對了</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>340萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-8">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>22:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/26/7bdf49765f8822e031f0b147031847q5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第22集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>七大罪 眾神的逆鱗</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>125萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-8">
+            <div class="date-block">
+              <span>3/25<p>(三)</p></span>
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/61/209c2f59d8b2e53fed2d5f7014183gx5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第13集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>普通攻擊是全體二連擊，這樣的媽媽你喜歡嗎？</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>193萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-9">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/79/b4dfcbb2555e0c91747d6e2282183pr5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第24集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>花牌情緣 第三季</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>59.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-9">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/70/7e6c826d4040db468fcf4fba7d183bm5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>成群結伴！西頓學園</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>63.2萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-9">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/69/a161613d7194177ba6c2d712f0185y15.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第11集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>夢幻之星 Online 2 Episode Oracle</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>36.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-9">
+            <div class="date-block">
+              <span>3/24<p>(二)</p></span>
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/68/13515867a31b37fa1387efa1e2183bk5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>房間露營</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>36.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-10">
+            <div class="date-block">
+              <span>3/23<p>(一)</p></span>
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>20:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/91/354e7cecfb170375a7524a7eea182n75.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>別對映像研出手！</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>36.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+        
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-11">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>16:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/49/e24c570f76e5ff729bd899e6c3182x55.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第21集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>Fate/Grand Order - 絕對魔獸戰線巴比倫尼亞 -</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>36.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+       
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-11">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>22:30</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/67/72349d5ee0a11e0d0fd784f65f182uv5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第12集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>達爾文遊戲</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>36.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-11">
+            <div class="date-block">
+              <span>3/22<p>(日)</p></span>
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>22:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/37/17a0b96c4b55ea811d9eef81551827t5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第11集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>淘氣貓 2020：家有圓圓？！我家的圓圓你知道嗎～</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>12.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-12">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -371,15 +1599,40 @@
             </div>
             <div class="anime-block">
               <span>21:30</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/19/347fa01eba7d62b3f17fdad20e181tf5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第11集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>籃球少年王</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>137.7萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-4">
+          <div class="newanime-date-area new-count-12">
             <div class="date-block">
-              <span>3/19 (四)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
@@ -389,10 +1642,258 @@
             </div>
             <div class="anime-block">
               <span>21:00</span>
-              <div class="anime-card-block"></div>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/42/f1fb847b1796eb2bfa22106a60181iy5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第11集</p>
+                    </div>
+                    
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>BanG Dream！第三季</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>36.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->          
+          
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-12">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:30</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/79/2895e593c9a5d6104da953753d17ze75.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第10集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>number24</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>36.6萬</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-12">
+            <div class="date-block">
+              <span>3/21<p>(六)</p></span>
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle circle-other">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:30</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/42/f98d7f9aa36983a33922be260817fzy5.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>第11集</p>
+                    </div>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>入間同學入魔了</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>323萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-13">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/2KU/90/006fe6701185ff64a5d203fabc184q65.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>特別篇</p>
+                    </div>
+                    <span class="new-anime" style="background-color:#438FB5">OVA</span>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>關於我轉生變成史萊姆這檔事</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>136.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+            
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-13">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/ACG/c/32/0000082332.PNG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                     <div class="anime-episode">
+                    </div>
+                    <span class="new-anime" style="background-color:#438FB5">電影</span>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>魔法科高中的劣等生 呼喚繁星的少女</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>136.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-13">
+            <div class="date-block">
+              <span>其他</span>
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle circle-other">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/ACG/c/99/0000110699.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>特別篇</p>
+                    </div>
+                    <span class="new-anime" style="background-color:#438FB5">OVA</span>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>PSYCHO-PASS 心靈判官 Sinners of the System Case.2 First Guardian</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>136.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
+
         </div>
       </div>
     </div>

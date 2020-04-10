@@ -49,7 +49,7 @@
           }); 
         }
 
-        for(var i=1;i<=7;i++){
+        for(var i=1;i<=13;i++){
           hoverIn(i);
         }
 
@@ -73,12 +73,14 @@
         function colorChangeLine(day, lineColor, thisElements){
           let newdate = $(".new-count-"+day+" .date-block span").html();
           if(lineColor === true) {
+
             thisElements.children(".date-block").find('span').remove();
             $(".new-count-"+day).children(".date-block").css("background-color","#f0f0f0");
             $(".new-count-"+day).children(".date-block").find("span").css("background-color","#FB9C00");
             $(".new-count-"+day).children(".date-block").find(".date-block-border").addClass('border-changecolor');
             thisElements.children(".date-block").prepend("<span class='date-info'>"+newdate+"</span>");
             thisElements.children(".date-block").children(".date-info").addClass("fadeIn");
+            
           }
           else if(lineColor === false) {
             thisElements.children(".date-block").find('span').remove();
@@ -875,54 +877,6 @@
             </div>
           </div>
           <!--單則動畫結束-->
-
-          <!--單則動畫-->
-          <div class="newanime-date-area new-count-6">
-            <div class="date-block">
-              <span>3/19 (四)</span>
-              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
-              <svg height="19" width="19" class="double-circle circle">
-                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
-                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
-              </svg>
-              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
-                <g fill="none" stroke="#82B1CB" stroke-width="2">
-                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
-                </g>
-              </svg>
-            </div>
-            <div class="anime-block">
-              <span>21:00</span>
-              <div class="anime-card-block">
-                <div class="anime-pic-block">
-                  <div class="anime-blocker">
-                    <img src="https://p2.bahamut.com.tw/B/2KU/90/006fe6701185ff64a5d203fabc184q65.JPG" alt="anime_pic">
-                  </div>
-                  <div class="line-gradient"></div>
-                  <div class="anime-detail-info-block">
-                    <div class="anime-episode">
-                      <img src="img/pic-tv.svg" alt="pic-tv">
-                      <p>特別篇</p>
-                    </div>
-                    
-                  </div>
-                  <a href="#" class="btn-favorite-block">
-                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
-                  </a>
-                </div>  
-                <div class="anime-name-block">
-                  <div class="anime-name">
-                    <p>關於我轉生變成史萊姆這檔事</p>
-                  </div>
-                  <div class="anime-watch-number">
-                    <img src="img/pic-eye.svg" alt="pic">
-                    <p>1316萬</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--單則動畫結束-->
           
           <!--單則動畫-->
           <div class="newanime-date-area new-count-7">
@@ -1013,7 +967,12 @@
           <!--單則動畫-->
           <div class="newanime-date-area new-count-7">
             <div class="date-block">
+              <span>3/26 (四)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l235 0" />
@@ -1053,7 +1012,7 @@
           <!--單則動畫結束-->
         
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-8">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1095,7 +1054,7 @@
           <!--單則動畫結束-->
        
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-8">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1138,7 +1097,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-8">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1181,7 +1140,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-8">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1224,9 +1183,14 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-8">
             <div class="date-block">
+              <span>3/25 (三)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -1267,7 +1231,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-9">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1309,7 +1273,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-9">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1352,7 +1316,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-9">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1394,9 +1358,14 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-9">
             <div class="date-block">
+              <span>3/24 (二)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -1436,9 +1405,14 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-10">
             <div class="date-block">
+              <span>3/23(一)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -1480,7 +1454,7 @@
 
         
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-11">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1522,7 +1496,7 @@
           <!--單則動畫結束-->
        
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-11">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1564,9 +1538,14 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-11">
             <div class="date-block">
+              <span>3/22 (日)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -1607,7 +1586,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-12">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1650,7 +1629,7 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-12">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1693,7 +1672,7 @@
           <!--單則動畫結束-->          
           
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-12">
             <div class="date-block">
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
@@ -1735,11 +1714,11 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-7">
+          <div class="newanime-date-area new-count-12">
             <div class="date-block">
-              <span>已完結</span>
+              <span>3/21 (六)</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
-              <svg height="19" width="19" class="double-circle circle">
+              <svg height="19" width="19" class="double-circle circle circle-other">
                 <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
                 <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
               </svg>
@@ -1782,14 +1761,9 @@
           <!--單則動畫結束-->
 
           <!--單則動畫-->
-          <div class="newanime-date-area new-count-8">
+          <div class="newanime-date-area new-count-13">
             <div class="date-block">
-              <span>03/27</span>
               <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
-              <svg height="19" width="19" class="double-circle circle">
-                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
-                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
-              </svg>
               <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
                 <g fill="none" stroke="#82B1CB" stroke-width="2">
                   <path stroke-dasharray="4,3" d="M0 10 l280 0" />
@@ -1828,7 +1802,95 @@
             </div>
           </div>
           <!--單則動畫結束-->
+            
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-13">
+            <div class="date-block">
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/ACG/c/32/0000082332.PNG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                     <div class="anime-episode">
+                    </div>
+                    <span class="new-anime" style="background-color:#438FB5">電影</span>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>魔法科高中的劣等生 呼喚繁星的少女</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>136.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
 
+          <!--單則動畫-->
+          <div class="newanime-date-area new-count-13">
+            <div class="date-block">
+              <span>其他</span>
+              <div class="date-block-border"></div><!--border-top實線 border-bottom虛線-->
+              <svg height="19" width="19" class="double-circle circle circle-other">
+                <circle class="circle" cx="10" cy="10" r="6" stroke-width="3" />
+                <circle class="circle" cx="10" cy="10" r="2" stroke-width="3" />
+              </svg>
+              <svg height="20" width="216" preserveAspectRatio="xMidYMid meet" class="dotted-line">
+                <g fill="none" stroke="#82B1CB" stroke-width="2">
+                  <path stroke-dasharray="4,3" d="M0 10 l280 0" />
+                </g>
+              </svg>
+            </div>
+            <div class="anime-block">
+              <span>21:00</span>
+              <div class="anime-card-block">
+                <div class="anime-pic-block">
+                  <div class="anime-blocker">
+                    <img src="https://p2.bahamut.com.tw/B/ACG/c/99/0000110699.JPG" alt="anime_pic">
+                  </div>
+                  <div class="line-gradient"></div>
+                  <div class="anime-detail-info-block">
+                    <div class="anime-episode">
+                      <img src="img/pic-tv.svg" alt="pic-tv">
+                      <p>特別篇</p>
+                    </div>
+                    <span class="new-anime" style="background-color:#438FB5">OVA</span>
+                  </div>
+                  <a href="#" class="btn-favorite-block">
+                    <img class="btn-favorite" src="img/btn-love.svg" alt="btn-favorite">
+                  </a>
+                </div>  
+                <div class="anime-name-block">
+                  <div class="anime-name">
+                    <p>PSYCHO-PASS 心靈判官 Sinners of the System Case.2 First Guardian</p>
+                  </div>
+                  <div class="anime-watch-number">
+                    <img src="img/pic-eye.svg" alt="pic">
+                    <p>136.6萬</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--單則動畫結束-->
 
         </div>
       </div>

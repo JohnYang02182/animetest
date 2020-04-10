@@ -137,15 +137,11 @@
   .date-block {
     .date-block-border {
       right: 0px;
-      width: calc(100%);
+      width: 100%;
     }
   }
   &:nth-of-type(6n) {
     .date-block {
-      .date-block-border {
-        right: 0px;
-        width: calc(100%);
-      }
       .dotted-line {
         width: calc( 100%);
       }
@@ -181,6 +177,7 @@
     }
   }
 }
+
 
 .newanime-date-area {
   display: flex;
@@ -225,6 +222,11 @@
         fill: white;
         stroke: #c4c4c4;
       } 
+    }
+    .circle-other {
+      >.circle {
+        stroke: #D95639;
+      }
     }
     .circle-active {
       >.circle {
@@ -406,8 +408,8 @@
     }
   }
 }
+
 .new-count-1 {
-  z-index: 4;
   .date-block {
     .date-block-border{
       background-color: #FB9C00;
@@ -417,13 +419,103 @@
     }
   }
 }
-.new-count-2 {
-  z-index: 3;
-}
-.new-count-3 {
-  z-index: 2;
+
+.new-count-13 {
+  .date-block {
+    .date-block-border {
+      background-color: #D95639;
+    }
+    >span {
+      background-color: #D95639;
+    }
+    .border-changecolor {
+      background-color: #FB9C00;
+    }
+  }
 }
 
-.new-count-4 {
-  z-index: 1;
+
+@for $i from 1 through 13 {
+  .new-count-#{$i} {
+    z-index: (14 - $i);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .newanime-date-area {
+    width: calc(100% / 5);
+    .date-block {
+      .date-block-border {
+        right: 0px;
+        width: 100%;
+      }
+    }
+    &:nth-of-type(6n) {
+      .date-block {
+        .date-block-border {
+          right: 0px;
+          width: calc(100%);
+        }
+        .dotted-line {
+          width: calc( 100%);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 998px) {
+  .newanime-date-area {
+    margin: 0 0 48px 0;
+    width: calc(100% / 4);
+    .date-block {
+      .date-block-border {
+        right: 0px;
+        width: 100%;
+      }
+    }
+    &:nth-of-type(6n) {
+      .date-block {
+        .date-block-border {
+          right: 0px;
+          width: calc(100%);
+        }
+        .dotted-line {
+          width: calc( 100%);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .newanime-date-area {
+    margin: 0;
+    width: calc(100% / 3);
+    .date-block {
+      display: none;
+      .date-block-border {
+        display: none;
+      }
+    }
+    .anime-block {
+      padding: 12px 6px 0 6px;
+      >span {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .newanime-date-area {
+    width: calc(100% / 2);
+  }
+}
+
+
+@media screen and (max-width: 360px) {
+  .newanime-date-area {
+    width: 100%;
+  }
 }

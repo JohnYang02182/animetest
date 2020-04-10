@@ -21,7 +21,7 @@
   from {
     opacity: .5;
     left: 50%;
-    transform: translate(calc(-50% + 12px),-10px);
+    transform: translate(-50%, -10px);
   }
   
   25% {
@@ -38,7 +38,7 @@
 
   to {
     opacity: 1;
-    transform: translate(calc(-50% + 12px), 0px);
+    transform: translate(-50%, 0px);
   }
 }
 
@@ -137,21 +137,17 @@
   .date-block {
     .date-block-border {
       right: 0px;
-      width: calc(100%);
+      width: 100%;
     }
   }
   &:nth-of-type(6n) {
     .date-block {
-      .date-block-border {
-        right: -24px;
-        width: calc(100% + 24px);
-      }
       .dotted-line {
-        width: calc( 100% + 24px);
+        width: calc( 100%);
       }
-      >span {
-        right: 24px;
-      }
+      // >span {
+      //   right: 12px;
+      // }
     }
     // .anime-block {
     //   padding: 36px 24px;
@@ -176,16 +172,17 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      padding: 16px 24px 0 0;
+      padding: 48px 12px 0 12px;
       overflow: hidden;
     }
   }
 }
 
+
 .newanime-date-area {
   display: flex;
   flex-direction: column;
-  margin: 0 0 56px 0;
+  margin: 0 0 60px 0;
   width: calc(100% / 6);
   // &:last-child {
   //   max-width: 194px;
@@ -204,27 +201,39 @@
   .date-block {
     position: relative;
     height: 60px;
+    width: 100%;
     >span {
       position: absolute;
-      top: -12px;
-      right: 0px;
+      top: -22px;
+      right: -24px;
+      padding: 6px 0 0 0;
       font-size: 13px;
       color: #fff;
-      padding: 4px 16px;
+      width: 50px;
+      height: 50px;
       text-align: center;
-      border-radius: 5px;
+      border-radius: 100px;
       background-color: #969696;
       z-index: 3;
+      box-sizing: border-box;
+      >p {
+        // display: block;
+      }
     }
     .double-circle {
       position: absolute;
       top: -9px;
-      left: -3px;
-      z-index: 3;
+      right: -10px;
+      z-index: 2;
       >.circle {
         fill: white;
         stroke: #c4c4c4;
       } 
+    }
+    .circle-other {
+      >.circle {
+        stroke: #D95639;
+      }
     }
     .circle-active {
       >.circle {
@@ -235,10 +244,18 @@
       top: -12px;
       right: unset;
       left: 50%;
-      transform: translateX(calc(-50% + 12px));
+      transform: translateX(-50%);
+      padding: 4px 16px;
+      width: unset;
+      height: unset;
       font-size: 13px;
       pointer-events: none;
       background-color: #FB9C00;
+      border-radius: 5px;
+      >p {
+        display: inline-block;
+        margin: 0 0 0 4px;
+      }
     }
     .date-block-border {
       position: absolute;
@@ -257,34 +274,156 @@
     }
     .dotted-line {
       position: absolute;
-      top: 49px;
+      top: 30px;
       left: 0;
       width: 100%;
     }
   }
   .anime-block {
     position: relative;
-    padding: 36px 0 36px 24px;
+    padding: 24px 12px 0px 12px;
     >span {
       position: absolute;
       top: -14px;
       left: 50%;
-      transform: translateX(calc(-50% + 12px));
+      transform: translateX(-50%);
       padding: 4px 16px;
       font-size: 13px;
       color: #fff;
       text-align: center;
-      border-radius: 3px;
+      border-radius: 50px;
       background-color: #56b4d1;
     }
     .anime-card-block {
+      display: flex;
+      flex-direction: column;
       width: 100%;
-      height: 136px;
       background-color: #969696;
       border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 0 6px 1px rgba(0,0,0,.1);
+      .anime-pic-block {
+        position: relative;
+        width: 100%;
+        .line-gradient {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-image: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 23%, rgba(0,0,0,.3) 64%, rgba(0,0,0,0.60) 100%);
+        }
+        .anime-blocker {
+          position: relative;
+          background-color: #fff;
+          overflow: hidden;
+          &:after {
+            content: "";
+            position: relative;
+            display: block;
+            width: 100%;
+            padding-bottom: 56.25%;
+          }
+          >img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .anime-detail-info-block {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          display: flex;
+          align-items: center;
+          flex-wrap: nowrap;
+          width: 100%;
+          padding: 4px;
+          box-sizing: border-box;
+          .anime-episode {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            flex: 1;
+            padding: 4px;
+            >img {
+              margin: 0 4px 0 0;
+              width: 12px;
+              height: 12px;
+              fill: #fff;
+            }
+            >p {
+              font-size: 12px;
+              color: #fff;
+            }
+          }
+          .new-anime {
+            padding: 0px 8px;
+            height: 20px;
+            font-size: 13px;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: 500;
+            background-color: #DB5539;
+          }
+        }
+        .btn-favorite {
+          position: absolute;
+          top: 4px;
+          right: 4px;
+          width: 30px;
+          height: 30px;
+          >img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .anime-name-block {
+        display: flex;
+        flex-direction: row;
+        padding: 4px 8px;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #fff;
+        .anime-name {
+          width: calc(100% - 80px);
+          flex-grow: 1;
+          overflow: hidden;
+          >p {
+            font-size: 13px;
+            line-height: 18px;
+            color: #323232;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipse;
+          }
+        }
+        .anime-watch-number {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          flex-wrap: nowrap;
+          max-width: 80px;
+          overflow: hidden;
+          >img {
+            margin: 0 4px;
+            width: 14px;
+            height: 14px;
+          }
+          >p {
+            font-size: 13px;
+            line-height: 18px;
+            color: #323232;
+          }
+        }
+      }
     }
   }
 }
+
 .new-count-1 {
   .date-block {
     .date-block-border{
@@ -293,5 +432,105 @@
     >span {
       background-color: #FB9C00;
     }
+  }
+}
+
+.new-count-13 {
+  .date-block {
+    .date-block-border {
+      background-color: #D95639;
+    }
+    >span {
+      background-color: #D95639;
+    }
+    .border-changecolor {
+      background-color: #FB9C00;
+    }
+  }
+}
+
+
+@for $i from 1 through 13 {
+  .new-count-#{$i} {
+    z-index: (14 - $i);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .newanime-date-area {
+    width: calc(100% / 5);
+    .date-block {
+      .date-block-border {
+        right: 0px;
+        width: 100%;
+      }
+    }
+    &:nth-of-type(6n) {
+      .date-block {
+        .date-block-border {
+          right: 0px;
+          width: calc(100%);
+        }
+        .dotted-line {
+          width: calc( 100%);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 998px) {
+  .newanime-date-area {
+    margin: 0 0 48px 0;
+    width: calc(100% / 4);
+    .date-block {
+      .date-block-border {
+        right: 0px;
+        width: 100%;
+      }
+    }
+    &:nth-of-type(6n) {
+      .date-block {
+        .date-block-border {
+          right: 0px;
+          width: calc(100%);
+        }
+        .dotted-line {
+          width: calc( 100%);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .newanime-date-area {
+    margin: 0;
+    width: calc(100% / 3);
+    .date-block {
+      display: none;
+      .date-block-border {
+        display: none;
+      }
+    }
+    .anime-block {
+      padding: 12px 6px 0 6px;
+      >span {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .newanime-date-area {
+    width: calc(100% / 2);
+  }
+}
+
+
+@media screen and (max-width: 360px) {
+  .newanime-date-area {
+    width: 100%;
   }
 }
