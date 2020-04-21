@@ -108,8 +108,8 @@ input:focus, select:focus, textarea:focus, button:focus {
   from {
     opacity: .5;
     left: 50%;
-    -webkit-transform: translate(calc(-50% + 12px), -10px);
-            transform: translate(calc(-50% + 12px), -10px);
+    -webkit-transform: translate(-50%, -10px);
+            transform: translate(-50%, -10px);
   }
   25% {
     opacity: .625;
@@ -122,8 +122,8 @@ input:focus, select:focus, textarea:focus, button:focus {
   }
   to {
     opacity: 1;
-    -webkit-transform: translate(calc(-50% + 12px), 0px);
-            transform: translate(calc(-50% + 12px), 0px);
+    -webkit-transform: translate(-50%, 0px);
+            transform: translate(-50%, 0px);
   }
 }
 
@@ -131,8 +131,8 @@ input:focus, select:focus, textarea:focus, button:focus {
   from {
     opacity: .5;
     left: 50%;
-    -webkit-transform: translate(calc(-50% + 12px), -10px);
-            transform: translate(calc(-50% + 12px), -10px);
+    -webkit-transform: translate(-50%, -10px);
+            transform: translate(-50%, -10px);
   }
   25% {
     opacity: .625;
@@ -145,8 +145,8 @@ input:focus, select:focus, textarea:focus, button:focus {
   }
   to {
     opacity: 1;
-    -webkit-transform: translate(calc(-50% + 12px), 0px);
-            transform: translate(calc(-50% + 12px), 0px);
+    -webkit-transform: translate(-50%, 0px);
+            transform: translate(-50%, 0px);
   }
 }
 
@@ -285,20 +285,7 @@ input:focus, select:focus, textarea:focus, button:focus {
 
 .newanime-date-area .date-block .date-block-border {
   right: 0px;
-  width: calc(100%);
-}
-
-.newanime-date-area:nth-of-type(6n) .date-block .date-block-border {
-  right: -24px;
-  width: calc(100% + 24px);
-}
-
-.newanime-date-area:nth-of-type(6n) .date-block .dotted-line {
-  width: calc( 100% + 24px);
-}
-
-.newanime-date-area:nth-of-type(6n) .date-block > span {
-  right: 24px;
+  width: 100%;
 }
 
 .newanime-container {
@@ -325,7 +312,7 @@ input:focus, select:focus, textarea:focus, button:focus {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 16px 24px 0 0;
+  padding: 16px 12px 0 12px;
   overflow: hidden;
 }
 
@@ -337,19 +324,21 @@ input:focus, select:focus, textarea:focus, button:focus {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 0 0 56px 0;
+  margin: 0 0 20px 0;
+  padding: 0 0 24px 0;
   width: calc(100% / 6);
+  border-radius: 0;
 }
 
 .newanime-date-area .date-block {
   position: relative;
-  height: 60px;
+  height: 16px;
 }
 
 .newanime-date-area .date-block > span {
   position: absolute;
   top: -12px;
-  right: 0px;
+  right: 12px;
   font-size: 13px;
   color: #fff;
   padding: 4px 16px;
@@ -362,13 +351,17 @@ input:focus, select:focus, textarea:focus, button:focus {
 .newanime-date-area .date-block .double-circle {
   position: absolute;
   top: -9px;
-  left: -3px;
+  right: -10px;
   z-index: 3;
 }
 
 .newanime-date-area .date-block .double-circle > .circle {
   fill: white;
   stroke: #c4c4c4;
+}
+
+.newanime-date-area .date-block .circle-other > .circle {
+  stroke: #D95639;
 }
 
 .newanime-date-area .date-block .circle-active > .circle {
@@ -379,8 +372,8 @@ input:focus, select:focus, textarea:focus, button:focus {
   top: -12px;
   right: unset;
   left: 50%;
-  -webkit-transform: translateX(calc(-50% + 12px));
-          transform: translateX(calc(-50% + 12px));
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   font-size: 13px;
   pointer-events: none;
   background-color: #FB9C00;
@@ -402,37 +395,204 @@ input:focus, select:focus, textarea:focus, button:focus {
   z-index: 2;
 }
 
-.newanime-date-area .date-block .dotted-line {
-  position: absolute;
-  top: 49px;
-  left: 0;
-  width: 100%;
-}
-
 .newanime-date-area .anime-block {
   position: relative;
-  padding: 36px 0 36px 24px;
+  padding: 16px 12px 0px 12px;
 }
 
 .newanime-date-area .anime-block > span {
   position: absolute;
-  top: -14px;
-  left: 50%;
-  -webkit-transform: translateX(calc(-50% + 12px));
-          transform: translateX(calc(-50% + 12px));
-  padding: 4px 16px;
-  font-size: 13px;
+  top: 4px;
+  left: 16px;
+  padding: 2px 12px;
+  font-size: 12px;
   color: #fff;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 5px;
   background-color: #56b4d1;
+  z-index: 4;
 }
 
 .newanime-date-area .anime-block .anime-card-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
-  height: 136px;
   background-color: #969696;
   border-radius: 3px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block {
+  position: relative;
+  width: 100%;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block .line-gradient {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), color-stop(23%, rgba(255, 255, 255, 0)), color-stop(64%, rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.6)));
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 23%, rgba(0, 0, 0, 0.3) 64%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-blocker {
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-blocker:after {
+  content: "";
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-blocker > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-detail-info-block {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  width: 100%;
+  padding: 4px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-detail-info-block .anime-episode {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 4px;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-detail-info-block .anime-episode > img {
+  margin: 0 4px 0 0;
+  width: 12px;
+  height: 12px;
+  fill: #fff;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-detail-info-block .anime-episode > p {
+  font-size: 12px;
+  color: #fff;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-detail-info-block .new-anime {
+  padding: 0px 8px;
+  height: 20px;
+  font-size: 13px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  background-color: #DB5539;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block .btn-favorite {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 30px;
+  height: 30px;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-pic-block .btn-favorite > img {
+  width: 100%;
+  height: 100%;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-name-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 4px 8px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #fff;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-name-block .anime-name {
+  width: calc(100% - 80px);
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  overflow: hidden;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-name-block .anime-name > p {
+  font-size: 13px;
+  line-height: 18px;
+  color: #323232;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipse;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-name-block .anime-watch-number {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  max-width: 80px;
+  overflow: hidden;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-name-block .anime-watch-number > img {
+  margin: 0 4px;
+  width: 14px;
+  height: 14px;
+}
+
+.newanime-date-area .anime-block .anime-card-block .anime-name-block .anime-watch-number > p {
+  font-size: 13px;
+  line-height: 18px;
+  color: #323232;
 }
 
 .new-count-1 .date-block .date-block-border {
@@ -441,6 +601,130 @@ input:focus, select:focus, textarea:focus, button:focus {
 
 .new-count-1 .date-block > span {
   background-color: #FB9C00;
+}
+
+.new-count-13 .date-block .date-block-border {
+  background-color: #D95639;
+}
+
+.new-count-13 .date-block > span {
+  background-color: #D95639;
+}
+
+.new-count-13 .date-block .border-changecolor {
+  background-color: #FB9C00;
+}
+
+.new-count-1 {
+  z-index: 13;
+}
+
+.new-count-2 {
+  z-index: 12;
+}
+
+.new-count-3 {
+  z-index: 11;
+}
+
+.new-count-4 {
+  z-index: 10;
+}
+
+.new-count-5 {
+  z-index: 9;
+}
+
+.new-count-6 {
+  z-index: 8;
+}
+
+.new-count-7 {
+  z-index: 7;
+}
+
+.new-count-8 {
+  z-index: 6;
+}
+
+.new-count-9 {
+  z-index: 5;
+}
+
+.new-count-10 {
+  z-index: 4;
+}
+
+.new-count-11 {
+  z-index: 3;
+}
+
+.new-count-12 {
+  z-index: 2;
+}
+
+.new-count-13 {
+  z-index: 1;
+}
+
+@media screen and (max-width: 1200px) {
+  .newanime-date-area {
+    width: calc(100% / 5);
+  }
+  .newanime-date-area .date-block .date-block-border {
+    right: 0px;
+    width: 100%;
+  }
+  .newanime-date-area:nth-of-type(6n) .date-block .date-block-border {
+    right: 0px;
+    width: calc(100%);
+  }
+}
+
+@media screen and (max-width: 998px) {
+  .newanime-date-area {
+    margin: 0 0 48px 0;
+    width: calc(100% / 4);
+  }
+  .newanime-date-area .date-block .date-block-border {
+    right: 0px;
+    width: 100%;
+  }
+  .newanime-date-area:nth-of-type(6n) .date-block .date-block-border {
+    right: 0px;
+    width: calc(100%);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .newanime-date-area {
+    margin: 0;
+    width: calc(100% / 3);
+  }
+  .newanime-date-area .date-block {
+    display: none;
+  }
+  .newanime-date-area .date-block .date-block-border {
+    display: none;
+  }
+  .newanime-date-area .anime-block {
+    padding: 12px 6px 0 6px;
+  }
+  .newanime-date-area .anime-block > span {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .newanime-date-area {
+    width: calc(100% / 2);
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .newanime-date-area {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=animatetest.css.map */
