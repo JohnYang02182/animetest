@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*-------------------reset.css----------------------------*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -413,7 +414,8 @@ input:focus, select:focus, textarea:focus, button:focus {
   z-index: 4;
 }
 
-.newanime-date-area .anime-block .anime-card-block {
+/*動畫卡牌區塊 開始*/
+.anime-card-block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -429,12 +431,12 @@ input:focus, select:focus, textarea:focus, button:focus {
           box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block {
+.anime-card-block .anime-pic-block {
   position: relative;
   width: 100%;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block .line-gradient {
+.anime-card-block .anime-pic-block .line-gradient {
   position: absolute;
   top: 0;
   width: 100%;
@@ -443,13 +445,13 @@ input:focus, select:focus, textarea:focus, button:focus {
   background-image: linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 23%, rgba(0, 0, 0, 0.3) 64%, rgba(0, 0, 0, 0.6) 100%);
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-blocker {
+.anime-card-block .anime-pic-block .anime-blocker {
   position: relative;
   background-color: #fff;
   overflow: hidden;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-blocker:after {
+.anime-card-block .anime-pic-block .anime-blocker:after {
   content: "";
   position: relative;
   display: block;
@@ -457,7 +459,7 @@ input:focus, select:focus, textarea:focus, button:focus {
   padding-bottom: 56.25%;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-blocker > img {
+.anime-card-block .anime-pic-block .anime-blocker > img {
   position: absolute;
   top: 0;
   left: 0;
@@ -467,7 +469,7 @@ input:focus, select:focus, textarea:focus, button:focus {
      object-fit: cover;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-detail-info-block {
+.anime-card-block .anime-pic-block .anime-detail-info-block {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -485,7 +487,7 @@ input:focus, select:focus, textarea:focus, button:focus {
           box-sizing: border-box;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-detail-info-block .anime-episode {
+.anime-card-block .anime-pic-block .anime-detail-info-block .anime-episode {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -500,19 +502,19 @@ input:focus, select:focus, textarea:focus, button:focus {
   padding: 4px;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-detail-info-block .anime-episode > img {
+.anime-card-block .anime-pic-block .anime-detail-info-block .anime-episode > img {
   margin: 0 4px 0 0;
   width: 12px;
   height: 12px;
   fill: #fff;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-detail-info-block .anime-episode > p {
+.anime-card-block .anime-pic-block .anime-detail-info-block .anime-episode > p {
   font-size: 12px;
   color: #fff;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block .anime-detail-info-block .new-anime {
+.anime-card-block .anime-pic-block .anime-detail-info-block .new-anime {
   padding: 0px 8px;
   height: 20px;
   font-size: 13px;
@@ -522,7 +524,7 @@ input:focus, select:focus, textarea:focus, button:focus {
   background-color: #DB5539;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block .btn-favorite {
+.anime-card-block .anime-pic-block .btn-favorite {
   position: absolute;
   top: 4px;
   right: 4px;
@@ -530,12 +532,12 @@ input:focus, select:focus, textarea:focus, button:focus {
   height: 30px;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-pic-block .btn-favorite > img {
+.anime-card-block .anime-pic-block .btn-favorite > img {
   width: 100%;
   height: 100%;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-name-block {
+.anime-card-block .anime-name-block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -550,7 +552,7 @@ input:focus, select:focus, textarea:focus, button:focus {
   background-color: #fff;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-name-block .anime-name {
+.anime-card-block .anime-name-block .anime-name {
   width: calc(100% - 80px);
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -558,7 +560,7 @@ input:focus, select:focus, textarea:focus, button:focus {
   overflow: hidden;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-name-block .anime-name > p {
+.anime-card-block .anime-name-block .anime-name > p {
   font-size: 13px;
   line-height: 18px;
   color: #323232;
@@ -567,7 +569,7 @@ input:focus, select:focus, textarea:focus, button:focus {
   text-overflow: ellipse;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-name-block .anime-watch-number {
+.anime-card-block .anime-name-block .anime-watch-number {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -583,18 +585,19 @@ input:focus, select:focus, textarea:focus, button:focus {
   overflow: hidden;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-name-block .anime-watch-number > img {
+.anime-card-block .anime-name-block .anime-watch-number > img {
   margin: 0 4px;
   width: 14px;
   height: 14px;
 }
 
-.newanime-date-area .anime-block .anime-card-block .anime-name-block .anime-watch-number > p {
+.anime-card-block .anime-name-block .anime-watch-number > p {
   font-size: 13px;
   line-height: 18px;
   color: #323232;
 }
 
+/*動畫卡牌區塊 結束*/
 .new-count-1 .date-block .date-block-border {
   background-color: #FB9C00;
 }
